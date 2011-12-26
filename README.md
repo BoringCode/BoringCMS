@@ -11,5 +11,7 @@ My hope is that someone smarter then me can take the idea and code and turn it i
 
 ## Credits
 HTML5/CSS3 Template: Twitter Bootstrap
+
 CSS Selector Engine: phpQuery
+
 Programmer: Bradley Rosenfeld
