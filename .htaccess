@@ -1,0 +1,18 @@
+Options -Indexes
+
+RewriteEngine on
+
+#don't require .php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php
+
+#admin panel
+RewriteRule ^admin/users/delete/id/([0-9]+)$ admin/admin.php?delete-id=$1&page=users
+RewriteRule ^admin/extend/delete/([A-Za-z0-9\-\_]+)$ admin/admin.php?extend-delete=$1&page=extend
+RewriteRule ^admin/content/edit/id/([A-Za-z0-9\-\_]+)$ admin/admin.php?content-id=$1&page=content
+RewriteRule ^admin/([a-zA-z]+)$ admin/admin.php?page=$1
+RewriteRule ^admin/$ admin/admin.php?page=home
+
+#home page
+RewriteRule ^([A-Za-z0-9\-\_]+)/$ index.php?page=$1
