@@ -1,88 +1,78 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset='utf-8'>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>BoringCMS</title>
 
-  <title>BoringCode/BoringCMS @ GitHub</title>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #c98fce;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #367031; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #367031; }
-    h3 { text-align: center; color: #367031; }
-    a { color: #367031; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
-</head>
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+      }
+	  .center {
+		text-align: center;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 20px;
+	}
+	.indent {
+		margin-left: 40px;
+	}
+    </style>
 
-<body>
-  <a href="https://github.com/BoringCode/BoringCMS"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+	</head>
 
-  <div id="container">
+  <body>
 
-    <div class="download">
-      <a href="https://github.com/BoringCode/BoringCMS/zipball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/BoringCode/BoringCMS/tarball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="https://github.com/BoringCode/BoringCMS">BoringCMS</a>
+		  <ul>
+			<li><a href="https://github.com/BoringCode/BoringCMS/zipball/master">Download</a></li>
+		  </ul>
+        </div>
+      </div>
     </div>
 
-    <h1><a href="https://github.com/BoringCode/BoringCMS">BoringCMS</a>
-      <span class="small">by <a href="https://github.com/BoringCode">BoringCode</a></span></h1>
-
-    <div class="description">
-      BoringCMS is a hot new CMS created for personal use by Bradley Rosenfeld.  It uses a simple to use CSS selector system for content. This does away with having to write complex templates.
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-      <h2>Authors</h2>
-      <p>Bradley Rosenfeld (bjr.umpire@gmail.com)<br/>      </p>
-    
-
-    
-      <h2>Contact</h2>
-      <p>Bradley Rosenfeld (bjr.umpire@gmail.com)<br/>      </p>
-    
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="https://github.com/BoringCode/BoringCMS/zipball/master">zip</a> or
-      <a href="https://github.com/BoringCode/BoringCMS/tarball/master">tar formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/BoringCode/BoringCMS</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="https://github.com/BoringCode/BoringCMS">BoringCode/BoringCMS</a>
-    </div>
-
-  </div>
-
+    <div class="container">
+      <!-- Main hero unit for a primary marketing message or call to action -->
+    <div class="hero-unit">
+		<h1>Awesome sauce!</h1>
+		BoringCMS is a hot new CMS created for personal use by Bradley Rosenfeld.  It uses a simple to use CSS selector system for content. This does away with having to write complex templates.
+	</div>
+	
+	<div class="row">
+        <div class="span8">
+			<h2>Wait, why?</h2>
+			<p>I (Bradley) am still in high school and I wanted to learn more about creating and manipulating MySQL databases with PHP. I remember when I first started out I didn't understand how to create templates for a popular CMS/Blogging system, Wordpress. Writing the PHP in my HTML template confused me.
+			</p>
+			<p>
+			So I have created BoringCMS. It is a selector based content management system with support for plugins. Yes, it is on the rough side. I'm still learning about what is best practice and what isn't. My hope is that someone smarter then me can take the idea and code and turn it into something awesome.</p>
+		</div> 
+		<div class="span8">
+			<h2>Great! How do I install?</h2>
+			<ul>
+			<li><p>Clone the <a href="https://github.com/BoringCode/BoringCMS">project</a> or download the compressed file.</p>
+				<p class="indent"><a href="https://github.com/BoringCode/BoringCMS/zipball/master">
+				<img border="0" width="70" src="https://github.com/images/modules/download/zip.png"></a>
+				<a href="https://github.com/BoringCode/BoringCMS/tarball/master">
+				<img border="0" width="70" src="https://github.com/images/modules/download/tar.png"></a>
+				</p>
+			</li>
+			<li>Upload to your server.</li>
+			<li>Go view your website in a web browser and follow the setup instructions that appear.</li>
+			<li>You're done!</li>
+			</ul>
+		</div>
+	</div>
+	
+	 <footer class="center">2011 - Bradley Rosenfeld</footer>
 </body>
 </html>
