@@ -2,7 +2,7 @@
 A lightweight CMS created as a fun project by Bradley "BoringCode" Rosenfeld
 
 ## A Little Back Story
-I (Bradley) am still in high school and I wanted to learn more about creating and manipulating MySQL databases with PHP.
+I wanted to learn more about creating and manipulating MySQL databases with PHP.
 I remember when I first started out I didn't understand how to create templates for a popular CMS/Blogging system, Wordpress. Writing the PHP in my HTML template confused me.
 
 So I have created BoringCMS. It is a selector based content management system with support for plugins.
