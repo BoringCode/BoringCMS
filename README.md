@@ -7,7 +7,6 @@ I remember when I first started out I didn't understand how to create templates 
 
 So I have created BoringCMS. It is a selector based content management system with support for plugins.
 Yes, it is on the rough side. I'm still learning about what is best practice and what isn't.
-My hope is that someone smarter then me can take the idea and code and turn it into something awesome.
 
 ## What's coming soon?
 Well for one thing detailed documentation. Oh, and cleaner code.
