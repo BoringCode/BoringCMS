@@ -1,1 +1,8 @@
-<?php DEFINE ("PDB_USER", "root"); DEFINE ("PDB_PASSWORD", "shamat31494"); DEFINE ("PDB_HOST", "localhost"); DEFINE ("PDB_NAME", "BoringCMS"); $pdbc = @mysqli_connect (PDB_HOST, PDB_USER, PDB_PASSWORD, PDB_NAME) OR die (header("Location: http://localhost/GIT/BoringCMS/admin/setup"));  $testforDB = "SELECT * FROM siteinfo"; if (!$runTestDB = mysqli_prepare($pdbc, $testforDB)) { header("Location: http://localhost/GIT/BoringCMS/admin/setup"); session_destroy(); }?>
+<?php 
+$request = $_SERVER['PHP_SELF'];
+$urlPath = "";
+if (strpos($request,'admin/index.php') === false) {
+	$urlPath = "admin/";
+}
+header("Location: " . $urlPath . "setup.php");
+?>
