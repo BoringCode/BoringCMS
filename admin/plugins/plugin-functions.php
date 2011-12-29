@@ -1,8 +1,8 @@
 <?php 
 //this is the official plugin API. Some helpful stuff for plugin devs.
-$request = basename($_SERVER['PHP_SELF']);
+$request = $_SERVER['PHP_SELF'];
 $urlPath = "";
-if ($request === "index.php") {
+if (strpos($request,'admin/index.php') === false) {
 	$urlPath = "admin/";
 }
 //connect to DB
@@ -89,8 +89,8 @@ class pluginAPI {
 	}
 	//get the current page (admin panel or website)
 	function currentPage() {
-		if (isset($_GET['page'])) {
-			return $_GET['page'];
+		if (isset($page)) {
+			return $page;
 		} else {
 			return "home";
 		}

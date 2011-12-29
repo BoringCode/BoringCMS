@@ -1,7 +1,7 @@
 <?php
-$request = basename($_SERVER['PHP_SELF']);
+$request = $_SERVER['PHP_SELF'];
 $urlPath = "";
-if ($request === "index.php") {
+if (strpos($request,'admin/index.php') === false) {
 	$urlPath = "admin/";
 }
 
@@ -32,7 +32,7 @@ class pluginFunctions {
 			while (false !== ($ifile = readdir($ihandle))) {
 				if ($ifile != "." && $ifile != ".." && strpos($ifile, "-$type.php") !== false) {
 					if ($type === "page") {
-						if($_GET['page'] === str_replace("-page.php", "", $ifile)) {
+						if($page === str_replace("-page.php", "", $ifile)) {
 							include ($this->urlPath . "plugins/plugin-functions.php");
 							include($idirectory . "/" . $ifile);
 						}
@@ -62,8 +62,8 @@ class pluginFunctions {
 				if ($portfoliolinkfile != "." && $portfoliolinkfile != ".." && strpos($portfoliolinkfile, "-page.php") !== false) {
 					$portfoliolinkfile = str_replace("-page.php", "", $portfoliolinkfile);
 					?>
-					<li <?php if($_GET['page'] === $portfoliolinkfile) { ?> class="active"<?php }?> >
-						<a href="<?php echo adminURL($this->dbc) . $portfoliolinkfile?>"><?php echo ucfirst($portfoliolinkfile); ?></a></li>
+					<li <?php if($page === $portfoliolinkfile) { ?> class="active"<?php } if($mr === false) { $mr_notactive = "?page="; } else { $mr_notactive = ""; } ?> >
+						<a href="<?php echo adminURL($this->dbc) . $mr_notactive . $portfoliolinkfile?>"><?php echo ucfirst($portfoliolinkfile); ?></a></li>
 					<?php
 				}
 			}

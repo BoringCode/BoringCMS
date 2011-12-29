@@ -123,7 +123,7 @@ if ((isset($checkFiles)) && (count($checkFiles) > 4) ) {
 			closedir($pluginPageHandle);
 			}
 		?> 		<!--close off the file list and display a delete button. JS makes the user confirm before deleting.-->
-				</ul> </td> <td><a href="<?php echo adminURL($dbc);?>extend/delete/<?php echo $deleteFolder ?>" class="btn danger" onclick="clicked = confirm('Are you sure?'); if (clicked === false) { return false;};">Delete</a>
+				</ul> </td> <td><a href="<?php echo adminURL($dbc) . $mr_notactive . "extend"; if ($mr_notactive !== "") { echo '&extend-delete='; } else { echo'/delete/'; } echo $deleteFolder ?>" class="btn danger" onclick="clicked = confirm('Are you sure?'); if (clicked === false) { return false;};">Delete</a>
 				</tr>
 <?php 					
 		}
@@ -138,7 +138,7 @@ if ((isset($checkFiles)) && (count($checkFiles) > 4) ) {
 <h2>Upload Plugin</h2>
 <?php if(isset($error)) {echo $error;} if(isset($success)) {echo $success;}?>
 <!--plugin upload form-->
-<form name="plugin-upload" action="<?php echo adminURL($dbc); ?>extend" method="post" enctype="multipart/form-data">
+<form name="plugin-upload" action="<?php echo adminURL($dbc) . $mr_notactive . "extend";?>" method="post" enctype="multipart/form-data">
 	<p><label for="image">Plugin ZIP File: </label> <input name="zip_file" type="file" id="image"/></p>
 	<p><button class="btn primary" type="submit">Upload</button></p>
 	<input type="hidden" name="upload" value="submitted"/>

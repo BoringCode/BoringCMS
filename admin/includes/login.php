@@ -57,7 +57,7 @@ header("Location: ". adminURL($dbc));
 }
 ?>
 <?php if(isset($error_text)) { echo $error_text; } ?>
-	<form name="login" action="<?php echo adminURL($dbc); ?>login" method="post">
+	<form name="login" action="<?php echo adminURL($dbc) . $mr_notactive . "login"; ?>" method="post">
 		<p><input class="span6" type="text" placeholder="Username" name="username" value="<?php if (isset($_POST["username"])) { echo $username;} ?>"/></p>
 		<p><input class="span6" type="password" placeholder="Password" name="password" /></p>
 		<button class="btn success" type="submit">Sign in</button>

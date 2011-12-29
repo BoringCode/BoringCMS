@@ -1,8 +1,1 @@
-<?php 
-$request = basename($_SERVER['PHP_SELF']);
-$urlPath = "";
-if ($request === "index.php") {
-	$urlPath = "admin/";
-}
-header("Location: " . $urlPath . "setup");
-?>
+<?php DEFINE ("DB_USER", "root"); DEFINE ("DB_PASSWORD", "shamat31494"); DEFINE ("DB_HOST", "localhost"); DEFINE ("DB_NAME", "BoringCMS"); $dbc = @mysqli_connect (DB_HOST, DB_USER, DB_PASSWORD, DB_NAME) OR die (header("Location: http://localhost/GIT/BoringCMS/admin/setup")); $testforDB = "SELECT * FROM siteinfo"; if (!$runTestDB = mysqli_prepare($dbc, $testforDB)) { header("Location: http://localhost/GIT/BoringCMS/admin/setup"); session_destroy(); } ?>

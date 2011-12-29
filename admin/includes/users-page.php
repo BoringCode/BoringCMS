@@ -86,7 +86,7 @@ while ($row = mysqli_fetch_array($requestusers, MYSQLI_ASSOC)) {?>
 <tr>
     <th><?php echo $row["id"];?></th>
     <td><?php echo $row["username"];?></td>
-	<td><a href="<?php echo adminURL($dbc);?>users/delete/id/<?php echo $row["id"];?>" class="btn danger">Delete</a>
+	<td><a href="<?php echo adminURL($dbc) . $mr_notactive . "users"; if ($mr_notactive !== "") { echo '&delete-id='; } else { echo'/delete/id/'; } echo $row["id"];?>" class="btn danger">Delete</a>
 </tr>
 <?php } ?> 
 </tbody>
@@ -99,7 +99,7 @@ while ($row = mysqli_fetch_array($requestusers, MYSQLI_ASSOC)) {?>
 if(isset($errortext)) { echo $errortext; }
 if(isset($done)) { echo $done; }
 ?>
-<form name="register" action="<?php echo adminURL($dbc); ?>users" method="post">
+<form name="register" action="<?php echo adminURL($dbc) . $mr_notactive . "users"; ?>" method="post">
 	<p><input class="span6" type="text" name="username" placeholder="Username" value="<?php 
 		if (isset($_POST['submitted'])) { echo $_POST['username']; }?>"></p>
 	<p><input class="span6" type="password" name="password" placeholder="Password"></p>

@@ -87,7 +87,7 @@ while ($row = mysqli_fetch_array($requestcontent, MYSQLI_ASSOC)) {
 <tr>
     <td><?php if ($row["page"] !== "") { echo ucwords(str_replace ("-", " ", $row["page"])); } else { echo "Every Page"; }?></td>
 	<!--delete button-->
-	<td><a href="<?php echo adminURL($dbc);?>content/edit/id/<?php if ($row["page"] !== "") { echo $row["page"]; } else { echo "every-page"; }?>" class="btn success">View</a>
+	<td><a href="<?php echo adminURL($dbc) . $mr_notactive . "content"; if ($mr_notactive !== "") { echo '&content-id='; } else { echo'/edit/id/'; } if ($row["page"] !== "") { echo $row["page"]; } else { echo "every-page"; }?>" class="btn success">View</a>
 </tr>
 <?php } ?> 
 </tbody>
@@ -101,7 +101,7 @@ if(isset($errortext)) { echo $errortext; }
 if(isset($done)) { echo $done; }
 ?>
 <!--new content form-->
-<form name="new-content" action="<?php echo adminURL($dbc); ?>content" method="post">
+<form name="new-content" action="<?php echo adminURL($dbc) . $mr_notactive . "content"; ?>" method="post">
 	<p><input class="span6" type="text" name="name" placeholder="Name"></p>
 	<p><input class="span6" type="text" name="page" placeholder="Page (leave blank if this content appears on every page)"></p>
 	<p><input class="span6" type="text" name="selector" placeholder="CSS Selector"></p>
@@ -135,7 +135,7 @@ $row = mysqli_fetch_array($requestcontent, MYSQLI_ASSOC); ?>
 
 <h2>Update/Delete Content</h2>
 	<? if(isset($update_run)) { ?><p class="alert-message block-message success">Success! Content updated.</p><?php } ?> 
-	<form name="update-content" action="<?php echo adminURL($dbc); ?>content/edit/id/<?php echo $id;?>" method="post">
+	<form name="update-content" action="<?php echo adminURL($dbc)  . $mr_notactive . "content"; if ($mr_notactive !== "") { echo '&content-id='; } else { echo'/edit/id/'; } echo $id;?>" method="post">
 		<p><input class="span6" type="text" name="name" placeholder="Name" value="<?php echo $row["name"];?>"></p>
 		<p><input class="span6" type="text" name="page" placeholder="Page (leave blank if content appears on every page)" value="<?php echo ucwords(str_replace ("-", " ", $row["page"]));?>"></p>
 		<p><input class="span6" type="text" name="selector" placeholder="CSS Selector" value="<?php echo $row["selector"];?>"></p>
@@ -144,12 +144,12 @@ $row = mysqli_fetch_array($requestcontent, MYSQLI_ASSOC); ?>
 		<input type="hidden" name="update" value="<?php echo $id; ?>"/>
 	</form>
 	
-	<form name="delete-content" action="<?php echo adminURL($dbc); ?>content" method="post">
+	<form name="delete-content" action="<?php echo adminURL($dbc) . $mr_notactive . "content"; ?>" method="post">
 		<p><button class="btn pull-right danger" type="submit">Delete</button></p>
 		<input type="hidden" name="deleteContent" value="<?php echo $id; ?>"/>
 	</form>
 	
-	<p><a href="<?php echo adminURL($dbc);?>content/edit/id/<?php if ($row["page"] !== "") { echo $row["page"]; } else { echo "every-page"; }?>" class="btn">&larr; Back</a></p>
+	<p><a href="<?php echo adminURL($dbc) . $mr_notactive . "content"; if ($mr_notactive !== "") { echo '&content-id='; } else { echo'/edit/id/'; } if ($row["page"] !== "") { echo $row["page"]; } else { echo "every-page"; }?>" class="btn">&larr; Back</a></p>
 
 <hr>
 
@@ -186,16 +186,16 @@ if ($page === "every-page") {
 		<tr>
 			<td><?php echo $row["name"];?></td>
 			<!--delete button-->
-			<td><a href="<?php echo adminURL($dbc);?>content/edit/id/<?php echo $row["id"];?>" class="btn success">Edit</a>
+			<td><a href="<?php echo adminURL($dbc) . $mr_notactive . "content"; if ($mr_notactive !== "") { echo '&content-id='; } else { echo'/edit/id/'; } echo $row["id"];?>" class="btn success">Edit</a>
 		</tr>
 	<?php } ?> 
 	</tbody>
 	</table>
-	<form name="delete-page" action="<?php echo adminURL($dbc); ?>content" method="post">
+	<form name="delete-page" action="<?php echo adminURL($dbc) . $mr_notactive . "content"; ?>" method="post">
 		<p><button class="btn danger" type="submit">Delete All</button></p>
 		<input type="hidden" name="deletePage" value="<?php echo $page; ?>"/>
 	</form>
-	<p><a href="<?php echo adminURL($dbc);?>content" class="btn">&larr; Back</a></p>
+	<p><a href="<?php echo adminURL($dbc) . $mr_notactive . "content"; ?>" class="btn">&larr; Back</a></p>
 
 	<hr>
 		<h2>How to manage your content.</h2>

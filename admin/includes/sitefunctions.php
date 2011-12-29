@@ -27,14 +27,23 @@ function checkLogin() {
 //logout function, destroy the session and redirect to login page
 function logout($dbc) {
 	session_destroy();
-	header("Location: login");
+	if (isset($_GET['mr'])) {
+		if ($_GET['mr'] === "true") {
+			$login = "login";
+		} else {
+			$login = "?page=login";
+		}
+	} else {
+		$login = "?page=login";
+	}
+	header("Location: " . $login);
 	exit();
 }
 //check to see if the current admin page is actually a page.
 function ifPage($page) {	
-	$request = basename($_SERVER['PHP_SELF']);
+	$request = $_SERVER['PHP_SELF'];
 	$urlPath = "";
-	if ($request === "index.php") {
+	if (strpos($request,'admin/index.php') === false) {
 		$urlPath = "admin/";
 	}
 	//iterate through directories in the plugins directory

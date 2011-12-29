@@ -1,8 +1,21 @@
 <?php 
-$request = basename($_SERVER['PHP_SELF']);
+$request = $_SERVER['PHP_SELF'];
 $urlPath = "";
-if ($request === "index.php") {
+if (strpos($request,'admin/index.php') === false) {
 	$urlPath = "admin/";
+}
+//check for mod_rewrite
+if (isset($_GET['mr'])) {
+	if ($_GET['mr'] === "true") {
+		$mr = true;
+		$mr_notactive = "";
+	} else {
+		$mr = false;
+		$mr_notactive = "?page=";
+	}
+} else {
+	$mr = false;
+	$mr_notactive = "?page=";
 }
 
 //include dbinfo and sitefunctions
@@ -12,9 +25,12 @@ include($urlPath . "plugins/index.php");
 
 //Logout thingy
 if (isset($_GET['page'])) {
-	if ($_GET['page'] === "logout") {
+	$page = $_GET['page'];
+	if ($page === "logout") {
 		logout();
 	}
+} else {
+	$page = "home";
 }
 ?>
 <!DOCTYPE html>
@@ -23,7 +39,7 @@ if (isset($_GET['page'])) {
     <meta charset="utf-8">
     <title><?php 
 	//page title, first check for a manual title set by the page. If that doesn't exist try to create one from the file name
-	if(isset($manualtitle)) { echo $manualtitle . ' - BoringCMS'; } elseif (isset($_GET['page'])) { if(ifPage($_GET['page']) === true){ echo ucfirst($_GET['page']) . " - BoringCMS"; } else { echo "404 - BoringCMS"; } } 	
+	if(isset($manualtitle)) { echo $manualtitle . ' - BoringCMS'; } elseif (isset($page)) { if(ifPage($page) === true){ echo ucfirst($page) . " - BoringCMS"; } else { echo "404 - BoringCMS"; } } 	
 	?></title>
 
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -66,7 +82,7 @@ if (isset($_GET['page'])) {
     <div class="topbar">
       <div class="fill">        
 		<div class="container">          
-		  <a class="brand <?php if($_GET['page'] === "home") {echo " active";}?>" href="<?php echo adminURL($dbc); ?>">BoringCMS</a>          
+		  <a class="brand <?php if($page === "home") {echo " active";}?>" href="<?php echo adminURL($dbc); ?>">BoringCMS</a>          
 		  <ul class="nav" data-dropdown="dropdown">		
 			<?php //navigation, echo out the default admin pages then echo the plugin dropdown. Only display if logged in.				
 			if (checkLogin() === true) {			
@@ -77,8 +93,8 @@ if (isset($_GET['page'])) {
 						$linkfile = str_replace("-page.php", "", $linkfile);
 						if ($linkfile !== "home" && $linkfile !== "credits") {
 						?>
-						<li <?php if($_GET['page'] === $linkfile) { ?> class="active"<?php }?> >
-							<a href="<?php echo adminURL($dbc) . $linkfile?>"><?php echo ucfirst($linkfile); ?></a></li>
+						<li <?php if($page === $linkfile) { ?> class="active"<?php } ?> >
+							<a href="<?php echo adminURL($dbc) . $mr_notactive . $linkfile?>"><?php echo ucfirst($linkfile); ?></a></li>
 						<?php }
 						}
 					}
@@ -89,9 +105,9 @@ if (isset($_GET['page'])) {
 			?>			
           </ul>
 		  <?php if(checkLogin() === true) { //display "Welcome, username" if logged in. If not display the login form.?>
-			<p class="pull-right logged-in">Welcome, <?php echo $_SESSION['username']; ?> <a href="<?php echo adminURL($dbc);?>logout">(logout)</a></p>
+			<p class="pull-right logged-in">Welcome, <?php echo $_SESSION['username']; ?> <a href="<?php echo adminURL($dbc) . $mr_notactive . "logout"; ?>">(logout)</a></p>
 		  <?php } else { ?>
-          <form name="login" action="<?php echo adminURL($dbc); ?>login" method="post" class="pull-right">
+          <form name="login" action="<?php echo adminURL($dbc) . $mr_notactive . "login"; ?>" method="post" class="pull-right">
             <input class="input-small" type="text" name="username" placeholder="Username">
             <input class="input-small" type="password" name="password" placeholder="Password">
             <button class="btn" type="submit">Sign in</button>
