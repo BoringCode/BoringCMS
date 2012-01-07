@@ -65,7 +65,7 @@ class pluginFunctions {
 				if ($portfoliolinkfile != "." && $portfoliolinkfile != ".." && strpos($portfoliolinkfile, "-page.php") !== false) {
 					$portfoliolinkfile = str_replace("-page.php", "", $portfoliolinkfile);
 					?>
-					<li <?php if($this->page === $portfoliolinkfile) { ?> class="active"<?php } if($this->mr === false) { $this->mr_notactive = "?page="; } else { $$this->mr_notactive = ""; } ?> >
+					<li <?php if($this->page === $portfoliolinkfile) { ?> class="active"<?php } if($this->mr === false) { $this->mr_notactive = "?page="; } else { $this->mr_notactive = ""; } ?> >
 						<a href="<?php echo adminURL($this->dbc) . $this->mr_notactive . $portfoliolinkfile?>"><?php echo ucfirst($portfoliolinkfile); ?></a></li>
 					<?php
 				}
