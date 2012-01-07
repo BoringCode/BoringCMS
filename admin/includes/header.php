@@ -18,11 +18,6 @@ if (isset($_GET['mr'])) {
 	$mr_notactive = "?page=";
 }
 
-//include dbinfo and sitefunctions
-require_once ($urlPath . "important/mysqli_connect.php"); 
-include_once($urlPath . "includes/sitefunctions.php");
-include($urlPath . "plugins/index.php");
-
 //Logout thingy
 if (isset($_GET['page'])) {
 	$page = $_GET['page'];
@@ -32,6 +27,13 @@ if (isset($_GET['page'])) {
 } else {
 	$page = "home";
 }
+
+//include dbinfo and sitefunctions
+require_once ($urlPath . "important/mysqli_connect.php"); 
+include_once($urlPath . "includes/sitefunctions.php");
+include($urlPath . "plugins/index.php");
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,14 +1,28 @@
 <?php
-	include_once ('admin/important/mysqli_connect.php');
-	include_once('admin/includes/sitefunctions.php');
-	include("admin/plugins/index.php");
-	include 'phpQuery/phpQuery.php';
-	
+	//check for mod_rewrite
+	if (isset($_GET['mr'])) {
+		if ($_GET['mr'] === "true") {
+			$mr = true;
+			$mr_notactive = "";
+		} else {
+			$mr = false;
+			$mr_notactive = "?page=";
+		}
+	} else {
+		$mr = false;
+		$mr_notactive = "?page=";
+	}
 	if (isset($_GET['page'])) {
 		$page = mysql_real_escape_string($_GET['page']);
 	} else {
 		$page = "home";
-	}	
+	}
+	
+	include_once ('admin/important/mysqli_connect.php');
+	include_once('admin/includes/sitefunctions.php');
+	include("admin/plugins/index.php");
+	include 'phpQuery/phpQuery.php';
+		
 	//load template (blank HTML file waiting to be filled)	
 	$siteinfo = "SELECT templateurl, sitename FROM siteinfo";
 	$siteinfoquery = @mysqli_query ($dbc, $siteinfo); // Run the query.

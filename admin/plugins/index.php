@@ -13,10 +13,13 @@ $iterator = new RecursiveIteratorIterator(
 include_once($urlPath . "important/mysqli_connect.php");
 //helpful class for use by admin panel, plugins need not apply
 class pluginFunctions {
-	function __construct($iterator,$pdbc,$urlPath) {
+	function __construct($iterator,$pdbc,$urlPath, $page, $mr, $mr_notactive) {
+		$this->mr= $mr;
+		$this->mr_notactive = $mr_notactive;
 		$this->iterator=$iterator;
 		$this->dbc=$pdbc;
 		$this->urlPath=$urlPath;
+		$this->page=$page;
 	}
 	//get the different types of plugins, current there are 2. Admin panel pages and something that adds functionality to the site
 	function getPluginPage($function) {
@@ -32,7 +35,7 @@ class pluginFunctions {
 			while (false !== ($ifile = readdir($ihandle))) {
 				if ($ifile != "." && $ifile != ".." && strpos($ifile, "-$type.php") !== false) {
 					if ($type === "page") {
-						if($page === str_replace("-page.php", "", $ifile)) {
+						if($this->page === str_replace("-page.php", "", $ifile)) {
 							include ($this->urlPath . "plugins/plugin-functions.php");
 							include($idirectory . "/" . $ifile);
 						}
@@ -62,8 +65,8 @@ class pluginFunctions {
 				if ($portfoliolinkfile != "." && $portfoliolinkfile != ".." && strpos($portfoliolinkfile, "-page.php") !== false) {
 					$portfoliolinkfile = str_replace("-page.php", "", $portfoliolinkfile);
 					?>
-					<li <?php if($page === $portfoliolinkfile) { ?> class="active"<?php } if($mr === false) { $mr_notactive = "?page="; } else { $mr_notactive = ""; } ?> >
-						<a href="<?php echo adminURL($this->dbc) . $mr_notactive . $portfoliolinkfile?>"><?php echo ucfirst($portfoliolinkfile); ?></a></li>
+					<li <?php if($this->page === $portfoliolinkfile) { ?> class="active"<?php } if($this->mr === false) { $this->mr_notactive = "?page="; } else { $$this->mr_notactive = ""; } ?> >
+						<a href="<?php echo adminURL($this->dbc) . $this->mr_notactive . $portfoliolinkfile?>"><?php echo ucfirst($portfoliolinkfile); ?></a></li>
 					<?php
 				}
 			}
@@ -76,6 +79,6 @@ class pluginFunctions {
 	}
 }
 //start up the class and pass the iterator function
-$pluginFunctions = new pluginFunctions($iterator, $dbc, $urlPath);
+$pluginFunctions = new pluginFunctions($iterator, $dbc, $urlPath, $page, $mr, $mr_notactive);
 
 ?>
