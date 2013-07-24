@@ -1,4 +1,5 @@
-###Warning: This was code created by a new developer. This probably should never be used in production.
+###Warning: 
+This code was created by a new developer (at the time). This probably should never be used in production.
 
 # Introducing BoringCMS!
 A lightweight CMS created as a fun project by Bradley "BoringCode" Rosenfeld
